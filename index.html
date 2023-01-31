@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  margin: 0;
+  min-width: 250px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+ul li {
+  cursor: pointer;
+  position: relative;
+  padding: 12px 8px 12px 40px;
+  list-style-type: Arial;
+  background: rgba(204, 30, 30, 0.664);
+  font-size: 16px;
+  transition: 0.2s;
+  
+  
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+ul li:nth-child(odd) {
+  background: #fafbfa;
+}
+
+ul li:hover {
+  background: rgb(245, 246, 244);
+}
+
+ul li.checked::before {
+  content: '';
+  position: absolute;
+  border-color: rgba(136, 30, 30, 0.305);
+  border-style: solid;
+  border-width: 0 2px 2px 0;
+  top: 10px;
+  left: 16px;
+  transform: rotate(30deg);
+  height: 15px;
+  width: 5px;
+}
+
+
+.close {
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 12px 16px 12px 16px;
+}
+
+.close:hover {
+  background-color: #150723;
+  color: white;
+}
+
+
+.header {
+  background-color: #191919ea;
+  padding: 20px 30px;
+  color: rgba(15, 150, 150, 0.912);
+  text-align: center;
+}
+
+
+.header:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+input {
+  margin: 0;
+  border: none;
+  border-radius: 0;
+  width: 25%;
+  padding: 10px;
+  float: center;
+  font-size: 15;
+}
+
+.DoneBtn {
+  padding: 10px;
+  width: 25px;
+  background: #f9f8f8;
+  color: rgba(191, 207, 19, 0.896);
+  float: center;
+  text-align: left;
+  font-size: 15px;
+  cursor: pointer;
+  border-radius: 0;
+}
+
+.DoneBtn:hover {
+  background-color: rgba(237, 227, 227, 0.727);
+}
+</style>
+</head>
+<body>
+
+<div id="myDIV" class="header">
+  <h2 style="margin:5px"> To Do List</h2>
+  <input type="text" id="myInput" placeholder="Title...">
+  <span onclick="newElement()" class="DoneBtn">Done</span>
+</div>
+<ul id="myUL">
+  <li>Welcome
+  <li>Lets Go
+  <li>Come
+
+<script>
+var close = document.getElementsByClassName("close");
+var i;
+for (i = 0; i < close.length; i++) {
+  close[i].onclick = function() {
+    var div = this.parentElement;
+    div.style.display = "none";
+  }
+}
+function newElement() {
+  var li = document.createElement("li");
+  var inputValue = document.getElementById("myInput").value;
+  var t = document.createTextNode(inputValue);
+  li.appendChild(t);
+  if (inputValue === '') {
+    alert("Not Empty!");
+  } else {
+    document.getElementById("myUL").appendChild(li);
+  }
+  document.getElementById("myInput").value = "";
+
+  var span = document.createElement("SPAN");
+  var txt = document.createTextNode("\u00D7");
+  span.className = "close";
+  span.appendChild(txt);
+  li.appendChild(span);
+
+  for (i = 0; i < close.length; i++) {
+    close[i].onclick = function() {
+      var div = this.parentElement;
+      div.style.display = "none";
+    }
+  }
+}
+</script>
+
+</body>
+</html>
